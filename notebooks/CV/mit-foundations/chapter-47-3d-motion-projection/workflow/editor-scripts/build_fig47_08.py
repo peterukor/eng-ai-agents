@@ -310,7 +310,7 @@ function doDrag(e){
 function endDrag(){ dragging = null; document.removeEventListener('mousemove', doDrag); document.removeEventListener('mouseup', endDrag); }
 
 function exportPython(){
-  const f = (xy) => 'np.array([' + xy[0].toFixed(3) + ', ' + xy[1].toFixed(3) + '])';
+  const f = (xy) => 'torch.tensor([' + xy[0].toFixed(3) + ', ' + xy[1].toFixed(3) + '])';
   const labels = {};
   for (const k of Object.keys(elements)){
     if (k.startsWith('label_')) labels[k.replace('label_','')] = elements[k].pos;
@@ -320,7 +320,7 @@ function exportPython(){
   code += 'Y_tip    = ' + f(elements.Y_tip.pos)  + '\n';
   code += 'X_tip    = ' + f(elements.X_tip.pos)  + '\n';
   code += 'Z_tip    = ' + f(elements.Z_tip.pos)  + '\n';
-  code += '\nplane = np.array([\n';
+  code += '\nplane = torch.tensor([\n';
   for (const k of ['plane_bl','plane_br','plane_tr','plane_tl','plane_bl']){
     code += '    [' + elements[k.replace('_bl_extra','_bl')].pos[0].toFixed(3) + ', ' + elements[k.replace('_bl_extra','_bl')].pos[1].toFixed(3) + '],\n';
   }

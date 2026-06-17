@@ -316,7 +316,7 @@ function updatePanel(){
 }
 
 function exportPython(){
-  const f = (xy) => 'np.array([' + xy[0].toFixed(3) + ', ' + xy[1].toFixed(3) + '])';
+  const f = (xy) => 'torch.tensor([' + xy[0].toFixed(3) + ', ' + xy[1].toFixed(3) + '])';
   const keys = ['O','X_tip','Z_tip','plane_top','plane_bot','W1','W2','V1_end','V2_end'];
   const labelKeys = ['label_O','label_X','label_Z','label_plane','label_title'];
 

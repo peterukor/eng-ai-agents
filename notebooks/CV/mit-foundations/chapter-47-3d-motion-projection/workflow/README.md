@@ -22,7 +22,7 @@ companion notebook. The intent is two-fold:
 **Tune figure layouts with a browser-based drag-and-drop editor, not by
 guessing matplotlib parameters.**
 
-Iterating on `ax.text(...)` / `Rectangle(...)` / `np.array([...])` numbers in
+Iterating on `ax.text(...)` / `Rectangle(...)` / `torch.tensor([...])` numbers in
 code and re-running the notebook to check the visual is slow and error-prone.
 Each round you fix one element, break another, and the per-iteration cost is
 ≥30 seconds (re-execute, re-render, eyeball).
@@ -33,7 +33,7 @@ The editor approach:
    semi-transparent background and overlays the matplotlib elements as draggable
    SVG handles.
 2. The contributor drags handles over the book image until the layout matches.
-3. The editor exports a Python snippet (explicit `np.array` positions, sliders
+3. The editor exports a Python snippet (explicit `torch.tensor` positions, sliders
    for sizes) that is pasted directly into the notebook cell.
 4. The cell renders the matplotlib version using those explicit positions —
    re-executes in a few seconds, and the output matches the dragged layout
@@ -92,15 +92,29 @@ structure) — they were correct without an editor.
 
 | Check | Status |
 |---|---|
-| Notebook executes end-to-end without errors | ✓ 7.2s, 0 errors |
+| Notebook executes end-to-end without errors | ✓ ~8s, 0 errors |
 | All 10 figures render | ✓ |
 | Code cells: 13. Markdown cells: 11 | ✓ |
 | Plotting-only cells tagged `hide-input` (per the brief) | ✓ 10 tagged, 3 untagged (the 3 are imports + the `project` and `motion_field` helper definitions — kept visible because they ARE the math) |
-| Uses PyTorch | ✓ `motion_field` and `project` use torch tensors |
+| Uses PyTorch | ✓ `motion_field`, `project`, and every coordinate/position is `torch.tensor` |
+| No NumPy in the notebook | ✓ stripped per the Aegean brief — every `np.*` swapped for the `torch.*` equivalent |
+| No plotting-library names in markdown | ✓ |
+| `images/` subfolder with rendered figures | ✓ `images/fig47_01.png … fig47_10.png` (10 files) |
 | Pure PyTorch ecosystem (no scikit-learn, no proprietary libs) | ✓ |
 | One chapter per directory | ✓ `notebooks/CV/mit-foundations/chapter-47-3d-motion-projection/` |
 | Branch named `mit-book-chapter-<chapter>-<section>` | ✓ `mit-book-chapter-47-2` |
 | Registered in `notebooks/notebook-database.yml` | ✓ |
+
+## Why this chapter does not import Kornia
+
+The Aegean brief lists Kornia as the recommended library on top of PyTorch
+"for differentiable computer vision". Chapter 47's whole pedagogical point is
+the explicit perspective-projection formula `(x, y) = (fX/Z, fY/Z)` and the
+motion field derived by differentiating it. Replacing the two-line `project`
+function with `kornia.geometry.linalg.transform_points(...)` would hide
+exactly the expression the chapter is teaching the reader to read. Other
+chapters in this project (notably Ch 38 image warping) are a better fit for
+Kornia and will use it.
 
 ## Replicating this for another chapter
 

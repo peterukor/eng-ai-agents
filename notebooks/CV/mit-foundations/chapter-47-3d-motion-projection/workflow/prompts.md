@@ -32,7 +32,7 @@ via the `Read` tool (multimodal — Claude reads the actual image).
 > "Build a drag-to-position editor for Fig <XY>.<N>. The book PNG is at
 > output/book-figures-<XY>/fig<XY>_<N>.png. Embed the PNG (base64) as a faded
 > background in an HTML page. Define draggable SVG elements for: <list each
-> structural element>. The editor should export Python (np.array(...) values
+> structural element>. The editor should export Python (torch.tensor(...) values
 > + slider parameter constants) that the notebook cell can paste directly.
 > Model the build script on workflow/editor-scripts/build_fig<closest>.py."
 
