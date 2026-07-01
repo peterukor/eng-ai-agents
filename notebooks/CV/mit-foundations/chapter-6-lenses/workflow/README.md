@@ -4,12 +4,14 @@ Tracking the 18 figures planned for the Chapter 6 (Lenses) companion notebook. S
 
 Status: ⬜ not started · 🟡 in progress · ✅ committed
 
+> **Finalized 2026-07-01 (submission-ready).** All reproduced figures reworked to the chapter-20 style — a visible compute cell (PyTorch/Kornia) followed by a `hide-input` draw cell — and matched against the book. Learning-context prose reduced (~46% shorter, kept not cut). Explicit `plt.savefig(...)` calls removed and `IMAGES_DIR` dropped from setup; figure outputs are now **embedded in the executed notebook**, and the committed `images/*.png` were regenerated from the current figures. Physical-photo figures (6.3b, 6.7, 6.15, 6.16) remain referenced in prose, not reproduced.
+
 ## 6.1 — Introduction
 
 | Status | Book ref | Output file | Strategy |
 |---|---|---|---|
 | ✅ | Fig 6.1 | `images/fig06_01.png` | Synthesize. Dog scene imaged through small pinhole, large pinhole, and lens. Three panels showing the brightness/sharpness trade-off. |
-| ⬜ | Fig 6.2 | `images/fig06_02.png` | Synthesize the effect. Same three-panel rig as 6.1 applied to a synthetic scene that stands in for the book's Gumby photo demo. |
+| — | Fig 6.2 | — | Deferred — optional synthetic stand-in for the book's Gumby photo demo; not built for this submission. |
 
 ## 6.2 — Lensmaker's Formula
 
