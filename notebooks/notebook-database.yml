@@ -532,8 +532,9 @@ notebooks:
   notebook: regression/linear-regression/sgd/sgd_sinusoidal_dataset.ipynb
   code_cells: 9
   environment: torch.dev.gpu
-  description: SGD on the regularized ridge loss for degree-9 polynomial regression, lambda anchored to the closed-form optimum
-  last_executed: 2026-05-30
+  description: Predicting electrical-grid load with SGD on a ridge-regularized degree-9 polynomial and an Optuna lambda search
+  colab_deps: gridstatusio python-dotenv
+  last_executed: 2026-07-01
   duration_seconds: 17.7
 - source: aiml-common/lectures/optimization/sgd/index.ipynb
   notebook: optimization/sgd/index.ipynb
